@@ -3,8 +3,8 @@
   become: true
   shell: |
     pwd && ls
-    mkdir -p /home/ubuntu/backend
-    tar xfC backend/artifact.tar.gz /home/ubuntu/backend
+    # mkdir -p /home/ubuntu/backend
+    tar xfC ~/project/artifact.tar.gz /home/ubuntu
 
 - name: "start the app"
   shell: |
