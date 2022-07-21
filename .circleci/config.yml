@@ -169,7 +169,7 @@ jobs:
       # Docker image here that supports Ansible
       - image: python:3.7-alpine3.16
       # Docker image of AWS CLI (incase of failure)
-      - image: amazon/aws-cli
+      # - image: amazon/aws-cli
     steps:
       # Checkout code from git
       - checkout
