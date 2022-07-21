@@ -20,14 +20,18 @@
   npm:
     name: pm2
     global: yes
-    
-- name: "extract backend files"
+
+- name: Copy artifact.tar.gz file to EC2 Instance
   become: true
-  shell: |
-    pwd
-    ls
-    cd /home/ubuntu
-    tar xf artifact.tar.gz
+  ansible.builtin.copy:
+    src: /root/project/artifact.tar.gz
+    dest: /home/ubuntu
+
+- name: Unarchive artifact.tar.gz file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /home/ubuntu/artifact.tar.gz
+    dest: /home/ubuntu
+    remote_src: yes
 
 - name: "start the app"
   shell: |
