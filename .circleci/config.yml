@@ -250,6 +250,8 @@ jobs:
     docker:
       - image: sleavely/node-awscli:14.x
     steps:
+      - restore_cache:
+          keys: [frontend-build]
       # Checkout code from git
       - checkout
       - run:
@@ -274,6 +276,7 @@ jobs:
             cd frontend
             npm install
             npm run build
+            ls dist
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
@@ -286,6 +289,8 @@ jobs:
     docker:
       - image: python:3.7-alpine3.16
     steps:
+      - restore_cache:
+          keys: [backend-build]
       # Checkout code from git
       - checkout
       # Add ssh keys with fingerprint
@@ -306,7 +311,7 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm i
+            npm install
             npm run build
             cd ..
             # Zip the directory
