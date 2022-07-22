@@ -331,10 +331,14 @@ jobs:
       - run:
           name: Get backend url
           command: |
-              # Fetch and prepare the BACKEND_IP env var
-              export API_URL="http://${BACKEND_IP}:3030"
-              echo "Backend URL is ------"
-              echo "${API_URL}"
+            # Fetch and prepare the BACKEND_IP env var
+            export BACKEND_IP=$(aws ec2 describe-instances \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --filters "Name=tag:project,Values=udapeople" \
+            --output text | tail -n 1)
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "Backend URL is ------"
+            echo "${API_URL}"
               
       - run:
           name: Backend smoke test
