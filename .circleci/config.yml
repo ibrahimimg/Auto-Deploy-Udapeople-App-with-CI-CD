@@ -295,9 +295,6 @@ jobs:
     steps:
       - restore_cache:
           keys: [backend-build]
-      # attach workspace
-      - attach_workspace:
-          at: .
       # Checkout code from git
       - checkout
       # Add ssh keys with fingerprint
@@ -336,8 +333,8 @@ jobs:
     docker:
       - image: python:3.7-alpine3.16
     steps:
-      - attach_workspace:
-          at: .
+      - restore_cache:
+          keys: [backend-build]
       # Checkout code from git
       - checkout
       - run:
@@ -395,8 +392,8 @@ jobs:
     docker:
       - image: sleavely/node-awscli:14.x
     steps:
-      - attach_workspace:
-          at: .
+      - restore_cache:
+          keys: [backend-build]
       # Checkout code from git
       - checkout
       - run:
