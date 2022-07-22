@@ -397,8 +397,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            echo "Installing dependencies"
-            yum install -y tar gzip
+            echo ""
+            # echo "Installing dependencies"
+            # yum install -y tar gzip
             
       - run:
           name: Update cloudfront distribution
