@@ -37,5 +37,7 @@
   shell: |
     cd /home/ubuntu/backend
     npm install
+    # try to re-run migration.. pass if No migrations are pending
+    npm run migrations
     pm2 stop default
     pm2 start npm -- start
