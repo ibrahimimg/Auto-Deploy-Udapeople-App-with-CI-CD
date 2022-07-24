@@ -1,5 +1,8 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+# Reusable commands
 commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -37,11 +40,12 @@ commands:
               npm run migrations:revert
             fi
             
-      
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs   
 jobs:
   build-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -58,7 +62,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -75,7 +79,7 @@ jobs:
 
   test-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -92,7 +96,7 @@ jobs:
                 
   test-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -109,7 +113,7 @@ jobs:
             
   scan-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -128,7 +132,7 @@ jobs:
 
   scan-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -236,7 +240,6 @@ jobs:
   
   run-migrations:
     docker:
-      # Docker image here that supports NodeJS
       - image: cimg/node:13.8.0
       # - image: sleavely/node-awscli:14.x
     steps:
@@ -287,6 +290,7 @@ jobs:
 
   deploy-frontend:
     docker:
+      # - image: cimg/node:13.8.0
       - image: sleavely/node-awscli:14.x
     steps:
       # Checkout code from git
@@ -296,8 +300,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            #curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
-            #yum install nodejs
+            echo ""
+            # curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            # unzip awscliv2.zip
+            # sudo ./aws/install
       - run:
           name: Get backend url
           command: |
@@ -430,6 +436,7 @@ jobs:
     
   cloudfront-update:
     docker:
+      # - image: cimg/node:13.8.0
       - image: sleavely/node-awscli:14.x
     steps:
       # Checkout code from git
@@ -440,8 +447,9 @@ jobs:
           name: Install dependencies
           command: |
             echo ""
-            # echo "Installing dependencies"
-            # yum install -y tar gzip
+            # curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            # unzip awscliv2.zip
+            # sudo ./aws/install
             
       - run:
           name: Update cloudfront distribution
@@ -494,7 +502,8 @@ jobs:
                 echo "Nothing to delete as ${CIRCLE_WORKFLOW_ID:0:7} = ${MyOldWorkflowID}"
             fi
 
-
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   default:
     jobs:
@@ -510,9 +519,6 @@ workflows:
           requires: [build-backend]
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-          # filters:
-          #   branches:
-          #     only: [test-feature-branch]
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - run-migrations:

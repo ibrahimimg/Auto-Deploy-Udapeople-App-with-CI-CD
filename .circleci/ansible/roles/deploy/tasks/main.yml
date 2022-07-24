@@ -1,26 +1,4 @@
 ---
-- name: "update apt packages."
-  become: true
-  apt:
-    update_cache: yes
-
-- name: "upgrade packages"
-  become: true
-  apt:
-    upgrade: yes
-
-- name: "install node and npm"
-  become: true
-  apt:
-    name: ["nodejs","npm"]
-    state: latest
-    update_cache: yes
-
-- name: Install "pm2" node.js package globally.
-  npm:
-    name: pm2
-    global: yes
-
 - name: Copy artifact.tar.gz file to EC2 Instance
   become: true
   ansible.builtin.copy:
@@ -39,3 +17,4 @@
     npm install
     pm2 stop default
     pm2 start npm -- start
+
