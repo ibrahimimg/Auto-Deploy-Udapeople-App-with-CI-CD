@@ -30,18 +30,18 @@ For your submission, please submit the following:
   1. Public URLs to deployed application back-end in EC2 [URL04]
   1. Public URL to your Prometheus Server [URL05]
 - Your screenshots in JPG or PNG format, named using the screenshot number listed in the instructions. These screenshots should be included in your code repository in the root folder.
-  1. Job failed because of compile errors. [SCREENSHOT01]
-  1. Job failed because of unit tests. [SCREENSHOT02]
-  1. Job that failed because of vulnerable packages. [SCREENSHOT03]
-  1. An alert from one of your failed builds. [SCREENSHOT04]
-  1. Appropriate job failure for infrastructure creation. [SCREENSHOT05]
-  1. Appropriate job failure for the smoke test job. [SCREENSHOT06]
-  1. Successful rollback after a failed smoke test. [SCREENSHOT07]  
-  1. Successful promotion job. [SCREENSHOT08]
-  1. Successful cleanup job. [SCREENSHOT09]
-  1. Only deploy on pushed to `master` branch. [SCREENSHOT10]
-  1. Provide a screenshot of a graph of your EC2 instance including available memory, available disk space, and CPU usage. [SCREENSHOT11]
-  1. Provide a screenshot of an alert that was sent by Prometheus. [SCREENSHOT12]
+  1. Job failed because of compile errors. [SCREENSHOT01](instructions/screenshots/SCREENSHOT01.png)
+  1. Job failed because of unit tests. [SCREENSHOT02](instructions/screenshots/SCREENSHOT02.png)
+  1. Job that failed because of vulnerable packages. [SCREENSHOT03](instructions/screenshots/SCREENSHOT03.png)
+  1. An alert from one of your failed builds. [SCREENSHOT04](instructions/screenshots/SCREENSHOT04.png)
+  1. Appropriate job failure for infrastructure creation. [SCREENSHOT05](instructions/screenshots/SCREENSHOT05.png)
+  1. Appropriate job failure for the smoke test job. [SCREENSHOT06](instructions/screenshots/SCREENSHOT06.png)
+  1. Successful rollback after a failed smoke test. [SCREENSHOT07](instructions/screenshots/SCREENSHOT07.png) 
+  1. Successful promotion job. [SCREENSHOT08](instructions/screenshots/SCREENSHOT08.png)
+  1. Successful cleanup job. [SCREENSHOT09](instructions/screenshots/SCREENSHOT09.png)
+  1. Only deploy on pushed to `master` branch. [SCREENSHOT10](instructions/screenshots/SCREENSHOT10.png)
+  1. Provide a screenshot of a graph of your EC2 instance including available memory, available disk space, and CPU usage. [SCREENSHOT11](instructions/screenshots/SCREENSHOT11.png)
+  1. Provide a screenshot of an alert that was sent by Prometheus. [SCREENSHOT12](instructions/screenshots/SCREENSHOT12.png)
 
 - Your presentation should be in PDF format named "presentation.pdf" and should be included in your code repository root folder. 
 
