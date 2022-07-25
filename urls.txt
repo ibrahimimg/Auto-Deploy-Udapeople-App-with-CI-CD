@@ -1,0 +1,14 @@
+Public Url to GitHub repository (not private) [URL01]
+https://github.com/ibrahimimg/Auto-Deploy-Udapeople-App-with-CI-CD
+
+Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
+http://udapeople-659d79a.s3-website-us-east-1.amazonaws.com
+
+Front-end application in CloudFront (aka, production front-end) [URL03]
+http://d20aj24l90ubb1.cloudfront.net
+
+The backend endpoint [URL04]
+http://54.197.202.19:3030/api/status
+
+Prometheus server [URL05]
+http://ec2-44-202-54-36.compute-1.amazonaws.com:9090
